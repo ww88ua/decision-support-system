@@ -14,9 +14,7 @@ public class AuthController {
   @CrossOrigin(origins = "http://localhost:4200")
   @RequestMapping("/auth/login")
   public User loginUser(@RequestParam("email") String email, @RequestParam("password") String password) {
-    User user = service.loginUser(email, password);
-    System.err.println(user);
-    return user;
+    return service.loginUser(email, password);
   }
 
   @RequestMapping("/add")

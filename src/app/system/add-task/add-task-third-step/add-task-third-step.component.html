@@ -1,0 +1,27 @@
+<div class="task-container">
+  <h4>Факторы и критерии</h4>
+  <p>Определите факторы и добавьте критерий для каждого фактора, если это применимо.</p>
+  <div class="list-of-factors" *ngFor="let row of rows; let i = index">
+    <div class="factor" id="factor{{i}}">
+      <input type="text" placeholder="Название фактора" id="factorName{{i}}">
+      <i class="fa fa-times" aria-hidden="true" (click)="removeFactor(i)"></i>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Обязательный критерий (если применимо)</p>
+          <input type="text" id="mandatory{{i}}">
+        </div>
+        <div class="col-md-6">
+          <div style="float: right">
+            <p>Обязательный поиска (если применимо)</p>
+            <input type="text" id="search{{i}}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <button class="btn btn-primary" (click)="addFactor()">Добавить альтернативу</button>
+  <button class="btn btn-primary" [routerLink]="['/system','tasks']" (click)="saveData()">Добавить задачу</button>
+</div>

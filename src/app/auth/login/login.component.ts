@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../shared/services/user.service';
 import {User} from '../../shared/models/user.model';
 import {Message} from '../../shared/models/message.module';
+import {AuthService} from '../../shared/services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,9 @@ export class LoginComponent implements OnInit {
   message: Message;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -40,7 +44,10 @@ export class LoginComponent implements OnInit {
       .subscribe((user: User) =>  {
         if (user) {
           if (user.password === formData.password) {
-
+            this.message.text = '';
+            window.sessionStorage.setItem('user', JSON.stringify(user));
+            this.authService.login();
+            this.router.navigate(['/system','tasks']);
           } else {
             this.showMessage('Такого пользователя не существует');
           }
