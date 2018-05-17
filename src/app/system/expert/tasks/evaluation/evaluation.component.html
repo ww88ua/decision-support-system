@@ -1,0 +1,53 @@
+<h1>
+  {{currentTask.name}}
+</h1>
+<div class="container">
+  <h3>Какой критерий является более приоритетным?</h3>
+  <div class="questions" *ngFor="let question of questions; let i = index;">
+    <h4>Вопрос {{i+1}}</h4>
+    <div class="row">
+      <div class="col-md-6 card dropdown" [ngClass]="{ 'active': answers[i] != undefined && answers[i][2] == 0}" appDropdown>
+        <h6>{{question[0].name}}</h6>
+        <button type="button" class="btn btn-primary card-button dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выбрать</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="setAnswer(2, i, 0)">Слабая степень предпочтения</a>
+          <a class="dropdown-item" (click)="setAnswer(3, i, 0)">
+            Средняя степень предпочтения</a>
+          <a class="dropdown-item" (click)="setAnswer(4, i, 0)">Предпочтение выше среднего</a>
+          <a class="dropdown-item" (click)="setAnswer(5, i, 0)">Умеренно сильное предпочтение </a>
+          <a class="dropdown-item" (click)="setAnswer(6, i, 0)">
+            Сильное предпочтение </a>
+          <a class="dropdown-item" (click)="setAnswer(7, i, 0)">Очень сильное(очевидное) предпочтение </a>
+          <a class="dropdown-item" (click)="setAnswer(8, i, 0)">Очень, очень сильное предпочтение</a>
+          <a class="dropdown-item" (click)="setAnswer(9, i, 0)">
+            Абсолютное предпочтение</a>
+        </div>
+      </div>
+      <div class="col-md-6 card right dropdown" [ngClass]="{ 'active': answers[i] != undefined && answers[i][2] == 1}"  appDropdown>
+        <h6>{{question[1].name}}</h6>
+        <button type="button" class="btn btn-primary card-button-right dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выбрать</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="setAnswer(2, i, 1)">Слабая степень предпочтения</a>
+          <a class="dropdown-item" (click)="setAnswer(3, i, 1)">
+            Средняя степень предпочтения</a>
+          <a class="dropdown-item" (click)="setAnswer(4, i, 1)">Предпочтение выше среднего</a>
+          <a class="dropdown-item" (click)="setAnswer(5, i, 1)">Умеренно сильное предпочтение </a>
+          <a class="dropdown-item" (click)="setAnswer(6, i, 1)">
+            Сильное предпочтение </a>
+          <a class="dropdown-item" (click)="setAnswer(7, i, 1)">Очень сильное(очевидное) предпочтение </a>
+          <a class="dropdown-item" (click)="setAnswer(8, i, 1)">Очень, очень сильное предпочтение</a>
+          <a class="dropdown-item" (click)="setAnswer(9, i, 1)">
+            Абсолютное предпочтение</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button type="button" class="btn  " [ngClass]="{ 'btn-success': equalsButtonSelected[i], 'btn-info': !equalsButtonSelected[i]  }" (click)="setAnswer(1, i); setEqualsButtonSelected(i)">Одинаково важные</button>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <button class="btn btn-danger" (click)="saveAnswers()"></button>
+</div>
+<router-outlet></router-outlet>

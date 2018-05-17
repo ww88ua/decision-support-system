@@ -1,0 +1,14 @@
+<div class="task-container">
+  <h4>Альтернативы</h4>
+  <p>Определение альтернатив</p>
+  <div class="list-of-alternatives" *ngFor="let row of rows; let i = index">
+    <div class="alternative" id="alt{{i}}">
+        <input type="text" placeholder="Название альтернативы" #altName id="altName{{i}}">
+        <i class="fa fa-times" aria-hidden="true" (click)="removeAlternative(i)"></i>
+    </div>
+  </div>
+
+
+  <button class="btn btn-primary" (click)="addAlternative()">Добавить альтернативу</button>
+  <button class="btn btn-primary" [routerLink]="['/system','admin','add-task','third-step']" (click)="saveData()">Далее</button>
+</div>

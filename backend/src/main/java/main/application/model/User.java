@@ -1,6 +1,7 @@
 package main.application.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -14,14 +15,19 @@ public class User {
   private String name;
   private boolean admin = false;
 
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable
+  private Set<User> tasks;
+
   public User() {
   }
 
-  public User(String email, String password, String name, boolean admin) {
+  public User(String email, String password, String name, boolean admin, Set<User> tasks) {
     this.email = email;
     this.password = password;
     this.name = name;
     this.admin = admin;
+    this.tasks = tasks;
   }
 
   public long getId() {
@@ -62,5 +68,13 @@ public class User {
 
   public void setAdmin(boolean admin) {
     this.admin = admin;
+  }
+
+  public Set<User> getTasks() {
+    return tasks;
+  }
+
+  public void setTasks(Set<User> tasks) {
+    this.tasks = tasks;
   }
 }

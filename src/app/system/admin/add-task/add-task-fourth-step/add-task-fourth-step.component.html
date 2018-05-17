@@ -1,0 +1,31 @@
+<div class="task-container">
+  <h4>Добавление экспертов</h4>
+  <p>Виберите экспертов из списка ниже иои добавьте новых.</p>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>
+        Список экспертов
+      </h3>
+    </div>
+    <div class="col-md-6" >
+      <a class="btn btn-primary" style="float: right" (click)="isClassVisible = !isClassVisible;">Добавить эксперта</a>
+    </div>
+
+  </div>
+  <form id="addExpertForm" [ngClass]="{'expertFormClass': isClassVisible }">
+    <input type="text" placeholder="Имя" id="userName"><br>
+    <input type="text" placeholder="Email" id="userEmail">
+    <button class="btn btn-primary" (click)="addExpert();isClassVisible = false; ">Добавить</button>
+  </form>
+
+
+
+  <div class="expert-container" *ngFor="let expert of experts; let i = index">
+    <div class="expert" id="expert{{expert.id}}" (click)="selectExpert(expert.id);hightlightStatus[i]=!hightlightStatus[i]" [attr.data-selected]="false" [class.selected]="hightlightStatus[i]">
+      <h4>{{expert.name}}</h4>
+    </div>
+  </div>
+
+
+  <button class="btn btn-primary" [routerLink]="['/system','admin','tasks']" (click)="saveData()">Добавить задачу</button>
+</div>

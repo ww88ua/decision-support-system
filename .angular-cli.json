@@ -21,9 +21,11 @@
       "styles": [
         "styles.sass",
         "./assets/vendor.css",
-        "./assets/theme.css"
+        "./assets/theme.css",
+        "./assets/materialize.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

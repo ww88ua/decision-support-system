@@ -23,6 +23,13 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const user: User = JSON.parse(window.sessionStorage.getItem('user'));
+    if (user !== null && user.admin) {
+      this.router.navigate(['/system/admin/tasks']);
+    } else if (user !== null && !user.admin) {
+      this.router.navigate(['/system/expert/tasks']);
+    }
+
     this.message = new Message('danger', '');
     this.form = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
@@ -40,14 +47,14 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const formData = this.form.value;
 
-    this.userService.getUserByEmail(formData.email, formData.password)
+    this.userService.getUserForLogin(formData.email, formData.password)
       .subscribe((user: User) =>  {
         if (user) {
           if (user.password === formData.password) {
             this.message.text = '';
             window.sessionStorage.setItem('user', JSON.stringify(user));
             this.authService.login();
-            this.router.navigate(['/system','tasks']);
+            this.router.navigate(['/system','admin','tasks']);
           } else {
             this.showMessage('Такого пользователя не существует');
           }

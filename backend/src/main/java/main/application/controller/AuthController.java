@@ -16,10 +16,4 @@ public class AuthController {
   public User loginUser(@RequestParam("email") String email, @RequestParam("password") String password) {
     return service.loginUser(email, password);
   }
-
-  @RequestMapping("/add")
-  public void loginUser() {
-    User user = new User("admin@gmail.com", "1111", "Администратор", true);
-    service.addUser(user);
-  }
 }

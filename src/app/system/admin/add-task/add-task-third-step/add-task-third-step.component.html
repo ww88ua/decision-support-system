@@ -1,0 +1,16 @@
+<div class="task-container">
+  <h4>Критерии</h4>
+  <p>Добавьте критерии для оценивания альтернатив.</p>
+  <div class="list-of-criterias" *ngFor="let row of rows; let i = index">
+    <div class="criteria" id="factor{{i}}">
+      <input type="text" placeholder="Название критерия" id="criteriaName{{i}}">
+      <i class="fa fa-times" aria-hidden="true" (click)="removeCriteria(i)"></i>
+      <br>
+      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    </div>
+  </div>
+
+
+  <button class="btn btn-primary" (click)="addCriteria()">Добавить критерий</button>
+  <button class="btn btn-primary" [routerLink]="['/system','admin','add-task','fourth-step']" (click)="saveData()">Далее</button>
+</div>
